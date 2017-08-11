@@ -1,4 +1,4 @@
-package com.example.sergei.newsapp.NewsObjects;
+package com.example.sergei.newsapp.newsobjects;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -11,14 +11,14 @@ public class NewsAnswer {
 
     @SerializedName("response")
     @Expose
-    private News news;
+    private NewsKeeper newsKeeper;
 
 
-    public void setNews(News news) {
-        this.news = news;
+    public void setNews(NewsKeeper news) {
+        this.newsKeeper = news;
     }
 
-    public News getNews() {
-        return news;
+    public NewsKeeper getNewsKeeper() {
+        return newsKeeper;
     }
 }
