@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.example.sergei.newsapp.network.NewsApi;
+import com.example.sergei.newsapp.network.NewsLoader;
 
 import javax.inject.Singleton;
 
@@ -42,6 +43,12 @@ public class AppModule {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
         return retrofit.create(NewsApi.class);
+    }
+
+    @Provides
+    @Singleton
+    public NewsLoader provideNewsLoader() {
+        return new NewsLoader();
     }
 
 }

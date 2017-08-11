@@ -1,6 +1,7 @@
 package com.example.sergei.newsapp.app;
 
 import com.example.sergei.newsapp.activities.MainActivity;
+import com.example.sergei.newsapp.network.NewsLoader;
 
 import javax.inject.Singleton;
 
@@ -15,5 +16,6 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(MainActivity mainActivity);
+    void inject(NewsLoader newsLoader);
 
 }
