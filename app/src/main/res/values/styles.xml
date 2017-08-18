@@ -8,4 +8,19 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="titleStyle">
+        <item name="android:textColor">@color/tc_black</item>
+        <item name="android:textSize">@dimen/ts_title</item>
+    </style>
+
+    <style name="sectionStyle">
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textSize">@dimen/ts_section</item>
+    </style>
+
+    <style name="separatorStyle">
+        <item name="android:background">@android:color/darker_gray</item>
+    </style>
+
+
 </resources>

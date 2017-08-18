@@ -4,11 +4,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
+import com.example.sergei.newsapp.helpers.DateHelper;
 import com.example.sergei.newsapp.newsobjects.PieceOfNews;
 import com.example.sergei.newsapp.R;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,6 +21,7 @@ import java.util.List;
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
 
     private List<PieceOfNews> news;
+    private View.OnClickListener onItemClickListener;
 
     public NewsAdapter(List<PieceOfNews> news){
         this.news = news;
@@ -27,6 +31,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     public NewsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View itemNews = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news, parent, false);
+
+        if(this.onItemClickListener != null){
+            itemNews.setOnClickListener(onItemClickListener);
+        }
 
         return new NewsViewHolder(itemNews);
     }
@@ -39,7 +47,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         holder.webTitle.setText(pieceOfNews.getWebTitle());
         holder.sectionName.setText(pieceOfNews.getSectionName());
         holder.author.setText(pieceOfNews.getAuthor());
-        holder.webPublicationDate.setText(pieceOfNews.getWebPublicationDate());
+
+        Date webPublicationDate = DateHelper.parseStringDateFromServer(pieceOfNews.getWebPublicationDate());
+        String webPublicationDateString = DateHelper.getFormatDateString(webPublicationDate);
+        holder.webPublicationDate.setText(webPublicationDateString);
 
     }
 
@@ -63,5 +74,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
             author = (TextView)itemView.findViewById(R.id.author);
             webPublicationDate = (TextView)itemView.findViewById(R.id.webPublicationDate);
         }
+    }
+
+    public void setOnItemClickListener(View.OnClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 }

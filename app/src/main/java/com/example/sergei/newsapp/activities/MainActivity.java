@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String searchText = editText.getText().toString();
                 newsLoader.updateData(searchText, "test");
+                editText.clearFocus();
             }
         });
 
@@ -79,12 +80,22 @@ public class MainActivity extends AppCompatActivity {
                     public void onNext(List<PieceOfNews> news) {
                         MainActivity.this.news.clear();
                         MainActivity.this.news.addAll(news);
+
                         updateNews();
+
+                        if(news.size() == 0){
+                            editText.requestFocus();
+                        }
                     }
                 });
     }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
 
     private void updateNews() {
 
@@ -94,6 +105,9 @@ public class MainActivity extends AppCompatActivity {
             newsAdapter = new NewsAdapter(news);
             newsList.setAdapter(newsAdapter);
         }
+
+
+
 
        newsAdapter.notifyDataSetChanged();
 
